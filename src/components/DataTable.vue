@@ -6,6 +6,9 @@
   </div>
   <div v-else>
     <div class="d-flex justify-content-between gap-5 mb-3">
+      <div class="w-75 d-flex justify-content-between">
+        <SearchBar @update-query="filterData" />
+      </div>
       <div class="w-25 d-flex align-items-center justify-content-end">
         <label class="vertical-align-center" for="pageSizeSelect">Rows per page:</label>
         <select id="pageSizeSelect" class="form-select w-50" v-model="pageSize" @change="updatePageSize">
@@ -54,9 +57,15 @@
 
 <script>
 import DataService from '../services/DataService';
+import Pagination from './PaginationBar';
+import SearchBar from './SearchBar';
 
 export default {
   name: 'DataTable',
+  components: {
+    Pagination,
+    SearchBar
+  },
   data() {
     return {
       data: [],
